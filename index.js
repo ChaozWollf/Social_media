@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('./config/connection');
-const thoughtControllers = require('./controllers/thoughtsContollers');
+const thoughtControllers = require('./controllers/thoughtsControllers');
 const userControllers = require('./controllers/userControllers')
 
 const cwd = process.cwd();

@@ -3,18 +3,24 @@ const userSchema = new Schema(
     {
         username:
         {
-            type: String,
+            type: {$trim: {input: String}},
             required: true,
+        
         },
-        friendslist: [
+        friends: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'friends',
             }
         ],
 
+        email: [ {
+            type: String,
+            required:true,
+            
+    }],
         thoughts: [
-            {
+            {  
                 type: Schema.Types.ObjectId,
                 ref: 'thoughts',
             },

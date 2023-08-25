@@ -4,13 +4,11 @@ const thoughtSchema = new Schema(
     {
         text: String,
         username: String,
-        comments: [{ type: Schema.Types.ObjectId, ref: 'thoughts' }],
-        // reactions: [reactionSchema]
-    },
+        },
 
     {
         toJSON: {
-            virtuals: true,
+            getters: true,
         },
         id: false,
     }

@@ -1,9 +1,9 @@
 const express = require('express');
 const db = require('./config/connection');
-const thoughtControllers = require('./controllers/thoughtsControllers');
-const userControllers = require('./controllers/userControllers')
+// const thoughtControllers = require('./controllers/thoughtsControllers');
+// const userControllers = require('./controllers/userControllers');
 const routes = require('./routes');
-const cwd = process.cwd();
+
 
 const PORT = 3001;
 const app = express();

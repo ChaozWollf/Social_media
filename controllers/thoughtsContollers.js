@@ -3,7 +3,7 @@ const { user, thoughts, reactions } = require('../models');
 module.exports = {
     async getThoughts(req, res) {
         try {
-            const thoughts = await Thought.find();
+            const thoughts = await thought.find();
             res.json(thoughts);
         } catch (err) {
             res.status(500).json(err);
@@ -11,10 +11,10 @@ module.exports = {
     },
     async getSingleThought(req, res) {
         try {
-            const user = await Thought.findOne({ _id: req.params.thought.Id })
+            const thoughts = await thoughts.findOne({ _id: req.params.thought.Id })
                 .select('-__v');
 
-            if (!user) {
+            if (!thoughts) {
                 return res.status(404).json({ message: 'No thought with that ID' });
             }
 
@@ -23,27 +23,22 @@ module.exports = {
             res.status(500).json(err);
         }
     },
-    async createUser(req, res) {
+    async createThought(req, res) {
         try {
-            const thoughts = await Thought.create(req.body);
+            const thoughts = await thoughts.create(req.body);
             res.json(thoughts);
         } catch (err) {
             res.status(500).json(err);
         }
     },
-    async deletethoughts(req, res) {
+    async deleteThought(req, res) {
         try {
-            const thoughts = await Thought.findOneAndDelete({ _id: req.params.userId });
+            const thoughts = await thoughts.findOneAndDelete({ _id: req.params.thought.Id });
 
-            if (!user) {
-                return res.status(404).json({ message: 'No user with that ID' });
+            if (!thoughts) {
+                return res.status(404).json({ message: 'No thought with that ID' });
             }
-
-            await thoughts.deleteMany({ _id: { $in: user.thoughts } });
-            res.json({ message: 'User and associated thoughts deleted!' })
-        } catch (err) {
-            s
-            res.status(500).json(err);
-        }
+        else { console.log(err)};
+         }
     },
 };

@@ -1,8 +1,16 @@
 const { Schema, model } = require('mongoose');
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
     {
-        username: String, required: true,
-        friendslist: Array, required: true,
+        username: [
+            { type: String, 
+                required: true, 
+            }
+        ],
+        friendslist: [
+          {  type: Schema.Types.ObjectId,
+            ref: 'friends',
+          }
+        ],
     
     thoughts: [
     {

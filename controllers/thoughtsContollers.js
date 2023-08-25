@@ -3,7 +3,7 @@ const { user, thoughts, reactions } = require('../models');
 module.exports = {
     async getThoughts(req, res) {
         try {
-            const thoughts = await thought.find();
+            const thoughts = await Thought.find();
             res.json(thoughts);
         } catch (err) {
             res.status(500).json(err);
@@ -11,7 +11,7 @@ module.exports = {
     },
     async getSingleThought(req, res) {
         try {
-            const thoughts = await thoughts.findOne({ _id: req.params.thought.Id })
+            const thoughts = await Thoughts.findOne({ _id: req.params.thought.Id })
                 .select('-__v');
 
             if (!thoughts) {
@@ -25,7 +25,7 @@ module.exports = {
     },
     async createThought(req, res) {
         try {
-            const thoughts = await thoughts.create(req.body);
+            const thoughts = await Thought.create(req.body);
             res.json(thoughts);
         } catch (err) {
             res.status(500).json(err);
@@ -33,7 +33,7 @@ module.exports = {
     },
     async deleteThought(req, res) {
         try {
-            const thoughts = await thoughts.findOneAndDelete({ _id: req.params.thought.Id });
+            const thoughts = await Thoughts.findOneAndDelete({ _id: req.params.thought.Id });
 
             if (!thoughts) {
                 return res.status(404).json({ message: 'No thought with that ID' });

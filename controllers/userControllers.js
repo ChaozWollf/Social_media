@@ -3,7 +3,7 @@ const {user, thoughts} = require('../models/');
 module.exports = {
     async getUsers(req, res) {
         try {
-            const users = await user.find();
+            const users = await User.find();
             res.json(users);
         } catch (err) {
             res.status(500).json(err);
@@ -11,7 +11,7 @@ module.exports = {
     },
     async getSingleUser(req, res) {
         try {
-            const user = await user.findOne({ _id: req.params.userId })
+            const user = await User.findOne({ _id: req.params.userId })
                 .select('-__v');
 
             if (!user) {
@@ -39,7 +39,7 @@ module.exports = {
                 return res.status(404).json({ message: 'No user with that ID' });
             }
 
-            await thoughts.deleteMany({ _id: { $in: user.thoughts } });
+            await Thought.deleteMany({ _id: { $in: user.thoughts } });
             res.json({ message: 'User and associated thoughts deleted!' })
         } catch (err) {s
             res.status(500).json(err);
